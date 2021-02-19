@@ -4,6 +4,8 @@
 - pyx文件不能与调用的cpp文件同名，否则根据pyx生成的cpp会覆盖原来的cpp
 - 在setup文件中，由pyx生成的库文件，最好和pyx文件同名。
 - 测试代码的时候用 python setup.py build -i会方便一些，因为生成的库文件就在当前文件夹下，不用安装就可测试。
+- 调用cpp文件定义类时，cpp的头文件c.h一定要写ifdef，endif等，否则会重定义
+- 在pyx文件中返回vector<vector<type>> 时，要加上np.array(ret)，否则不是2维的array，而是list（array）。
 ```
 Test
     - a.pyx

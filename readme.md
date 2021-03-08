@@ -8,6 +8,7 @@
 - 在pyx文件中返回vector<vector<type>> 时，要加上np.array(ret)，否则不是2维的array，而是list（array）。
 - setup中定义"NPY_1_7_API_VERSION" 会导致dimensions is not a member of 'tagPyArrayObject'，暂时只能去掉
 - c++使用eigen库，默认的矩阵时列优先存储的，拷贝到vector时也要列优先拷贝，否则会出错，后续考虑使用eigency转换/返回，避免自己转换。
+- _ZN5错误，h文件中有~ClassName，cpp文件用也必须要有ClassName::~ClassName(){}否则会引发undefined symbol _ZN5ClassName
 ```
 文件命名如下
 Test

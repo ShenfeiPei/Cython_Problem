@@ -21,4 +21,17 @@ xx_code
     - setup.py (name=xx)
     - demo.py    # we can calls functions defined in a.pxd in demo.py
 ```
-
+# 引用公共函数，建议目录如下, 所有包（目录）不能有下划线。
+    - pack
+        - algo
+            - a.h
+            - a.cpp
+            - a_.pyx  (reference Public by top_pack = __import__(__name__.split(".")[0], fromlist=["Public"]), P = top_pack.Public
+            - a_.pxd
+            - setup.py (reference Public by top_pack = __import__(__name__.split("_")[0], fromlist=["Public"]), P = top_pack.Public
+            - __init__.py
+        - Public
+        - __init__.py (empty， 编译时阻止import algo，如果编译时import algo，而此时algo还没有完成编译，就会出错)
+        - setup.py
+    - demo.py
+    - setup.py

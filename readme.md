@@ -5,10 +5,11 @@
 - 在setup文件中，由pyx生成的库文件，最好和pyx文件同名。
 - 测试代码的时候用 python setup.py build -i会方便一些，因为生成的库文件就在当前文件夹下，不用安装就可测试。
 - 调用cpp文件定义类时，cpp的头文件c.h一定要写ifdef，endif等，否则会重定义
-- 在pyx文件中返回vector<vector<type>> 时，要加上np.array(ret)，否则不是2维的array，而是list（array）。
+- 在pyx文件中返回vector<vector<type>> 时，要加上np.array(ret)，否则不是2维的array，而是list（list）。
 - setup中定义"NPY_1_7_API_VERSION" 会导致dimensions is not a member of 'tagPyArrayObject'，暂时只能去掉
 - c++使用eigen库，默认的矩阵时列优先存储的，拷贝到vector时也要列优先拷贝，否则会出错，后续考虑使用eigency转换/返回，避免自己转换。
 - _ZN5错误，h文件中有~ClassName，cpp文件用也必须要有ClassName::~ClassName(){}否则会引发undefined symbol _ZN5ClassName
+- _ZN2错误，undefined symbol，可能是pxd文件里面没有pass cpp文件。
 - 顶层setup.py中的包的名字和包含的唯一子包要一致，
 ```
 文件命名如下
